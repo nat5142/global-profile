@@ -1,0 +1,44 @@
+#!/bin/bash
+
+
+load_conf() {
+  local conf
+  for conf in "$1"/*.conf; do
+    source "${conf}"
+  done
+  return 0
+}
+
+conf_support() {
+  cd `dirname ${BASH_ARGV[0]}`
+  echo "`pwd`/$1"
+  cd - > /dev/null
+}
+
+is_home_dir() {
+  cd "$1"
+  full_path=`pwd`
+  cd - > /dev/null
+  [ "$full_path" = "$HOME" ]
+}
+
+export PROFILE_INIT=`readlink ${BASH_ARGV[0]}`
+export PROFILE_CORE=`dirname ${PROFILE_INIT}`
+export PROFILE_CUSTOM="${PROFILE_CORE}/.."
+export MYHOST=`hostname`
+
+PLATFORM=`uname`
+ORIGINAL_PWD=`pwd`
+
+cd "${HOME}"
+
+load_conf "${PROFILE_CORE}"
+load_conf "${PROFILE_CORE}/${PLATFORM}"
+load_conf "${PROFILE_CORE}/hosts/${MYHOST}"
+
+if ! is_home_dir "${PROFILE_CUSTOM}"; then
+  load_conf "${PROFILE_CUSTOM}"
+  load_conf "${PROFILE_CUSTOM}/${PLATFORM}"
+fi
+
+cd "${ORIGINAL_PWD}"
