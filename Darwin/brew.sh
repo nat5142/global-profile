@@ -1,3 +1,4 @@
+#!/bin/bash
 
 if [[ $(command -v brew) ]] ; then
   echo "brew already installed."
