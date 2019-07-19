@@ -1,0 +1,17 @@
+bash-completion
+cscope
+ffmpeg
+imagemagick
+inetutils
+isl
+jq
+libmpc
+mongodb
+mysql-connector-c
+ncdu
+nmap
+node
+pkg-config
+redis
+wget
+wireshark
