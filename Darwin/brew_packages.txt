@@ -1,6 +1,4 @@
 bash-completion
-cscope
-ffmpeg
 imagemagick
 inetutils
 isl
@@ -11,7 +9,7 @@ mysql-connector-c
 ncdu
 nmap
 node
+npm
 pkg-config
-redis
 wget
 wireshark
