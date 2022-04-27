@@ -11,5 +11,5 @@ nmap
 node
 npm
 pkg-config
+pyenv
 wget
-wireshark
